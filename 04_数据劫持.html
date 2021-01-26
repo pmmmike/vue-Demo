@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            a: 12
+        };
+
+        // 定义obj对象的a属性的隐藏属性
+        Object.defineProperty(obj, 'a', {
+            set() {
+                console.log('你正在尝试设置a');
+            },
+            get() {
+                console.log('你正在尝试读取a');
+            }
+        });
+    </script>
+</body>
+
+</html>

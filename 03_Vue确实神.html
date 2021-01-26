@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1">按我长大一岁</button>
+    <button id="btn2">按我变性</button>
+    <div id="container"></div>
+
+    <script type="template" id="template">
+        <div>
+            <h3>我是{{name}}，今年{{age}}岁了，我是个{{sex}}生</h3>
+            <p>我买了一个{{thing}}</p>
+        </div>
+    </script>
+
+    <script>
+        // 数据对象
+        var data = {
+            name: '小红',
+            age: 11,
+            sex: '女',
+            thing: '华为手机'
+        };
+
+        // 渲染函数
+        function render() {
+            // 读取模板字符串
+            var templateString = document.getElementById('template').innerText;
+
+            // 调用replace方法，把{{}}的内容都替换为★
+            templateString = templateString.replace(/\{\{(\w+)\}\}/g, function (str, $1) {
+                return data[$1];
+            });
+
+            // 让容器中的内容变为templateString
+            document.getElementById('container').innerHTML = templateString;
+        }
+
+        // 调用渲染函数
+        render();
+ 
+        // 按钮监听
+        document.getElementById('btn1').onclick = function () {
+            data.age++;
+        };
+
+        // 按钮监听
+        document.getElementById('btn2').onclick = function () {
+            data.sex = data.sex == '男' ? '女' : '男';
+        };
+    </script>
+</body>
+
+</html>
